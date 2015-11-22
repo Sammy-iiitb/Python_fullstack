@@ -13,20 +13,26 @@ class WebServerHandler(BaseHTTPRequestHandler):
             self.send_response(200)
             self.send_header('Content-type', 'text/html')
             self.end_headers()
-            message = ""
-            message += "<html><body>Hello!</body></html>"
-            self.wfile.write(message)
-            print message
+            output = ""
+            output += "<html><body>"
+            output += "<h1>Hello!</h1>"
+            output += '''<form method='POST' enctype='multipart/form-data' action='/hello'><h2>What would you like me to say?</h2><input name="message" type="text" ><input type="submit" value="Submit"> </form>'''
+            output += "</body></html>"
+            self.wfile.write(output)
+            print output
             return
 
         if self.path.endswith("/hola"):
             self.send_response(200)
             self.send_header('Content-type', 'text/html')
             self.end_headers()
-            message = ""
-            message += "<html><body>multiple get request page 2</body></html>"
-            self.wfile.write(message)
-            print message
+            output = ""
+            output += "<html><body>"
+            output += "<h1>&#161 Hola !</h1>"
+            output += '''<form method='POST' enctype='multipart/form-data' action='/hello'><h2>What would you like me to say?</h2><input name="message" type="text" ><input type="submit" value="Submit"> </form>'''
+            output += "</body></html>"
+            self.wfile.write(output)
+            print output
             return
         else:
             self.send_error(404, 'File Not Found: %s' % self.path)
